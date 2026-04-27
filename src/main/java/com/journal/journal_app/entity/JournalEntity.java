@@ -1,4 +1,6 @@
 package com.journal.journal_app.entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,7 +12,12 @@ import java.time.LocalDateTime;
 public class JournalEntity {
 
     private ObjectId id;
+
+    @Size(min = 5, max = 20, message = "The title should be between 5 - 20 characters.")
+    @NotBlank(message="Please enter title of the journal.")
     private String title;
+
+    @NotBlank(message= "Please enter content field.")
     private String content;
     private LocalDateTime date;
 
